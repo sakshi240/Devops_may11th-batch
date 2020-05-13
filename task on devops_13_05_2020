@@ -1,0 +1,26 @@
+1.add this in pom file
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.6.1</version>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
+thru command
+
+mvn compile:compile
+
+2.maven offline mode 
+
+3. maven - mvn help:describe
+
+4. profile command
+
+
