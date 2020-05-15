@@ -1,0 +1,766 @@
+git ---> dvcs
+
+svn - centralized vcs
+
+vcs?
+
+its like a database maintains multiple versions of ur proj
+
+dvcs:
+
+backup of code base
+work offline
+maintians local copy 
+collaboration
+chnages done in the local copy will be tracked
+
+	
+
+git hub
+git lab
+git bucket
+bit bucket
+
+hosting repo
+additional options
+
+git hub - private, public
+
+mylatestrepo -local repo
+
+master branch
+
+
+devopsrepo - central repo
+
+master branch
+
+if u need to push to central repo , where do u want to do that 
+
+do it in mastrer branch of central repo
+
+git push --set -u origin master 
+
+in local repo
+
+when u need a branch?
+
+when u go for hot fixes , bug fixes or u implememnt new components
+
+what will be the content of the my branch?
+
+it ll have all the files in master branch also in my branch
+
+
+
+git init 
+
+git add
+
+git commit -m
+
+git reset HEAD <file>
+
+git stash
+
+git checkout <file>
+
+git rm
+
+git branch 
+
+git checkout branchname
+
+git status
+
+git log
+
+BY default local repo will be using master branch
+
+git show
+git show d94c98b6d564374937f92362f75b5be3c150d85f --name-only
+
+git log --oneline
+
+B:\my>git branch
+* master
+
+B:\my>git branch header
+
+B:\my>git branch footer
+
+B:\my>git checkout header
+Switched to branch 'header'
+
+B:\my>git branch
+  footer
+* header
+  master
+
+B:\my>git status
+On branch header
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        branch file1.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+B:\my>git commit -am "fast commit"
+On branch header
+Untracked files:
+        branch file1.txt
+
+nothing added to commit but untracked files present
+
+
+B:\my>git commit -am "fast commit"
+On branch header
+Untracked files:
+        branch file1.txt
+
+nothing added to commit but untracked files present
+
+B:\my>git commit -a -m "fast commit"
+On branch header
+Untracked files:
+        branch file1.txt
+
+nothing added to commit but untracked files present
+
+B:\my>git commit -am "fast commit"
+On branch header
+Untracked files:
+        branch file1.txt
+
+nothing added to commit but untracked files present
+
+B:\my>git add .
+
+B:\my>git commit  -m "in branch - commit 1"
+[header eaa37f1] in branch - commit 1
+ 1 file changed, 1 insertion(+)
+ create mode 100644 branch file1.txt
+
+B:\my>git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+B:\my>git checkout header
+Switched to branch 'header'
+
+B:\my>git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+B:\my>git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        check stash.txt
+        checking.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+B:\my>git add .
+
+B:\my>git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   check stash.txt
+        new file:   checking.txt
+
+
+B:\my>git stash
+Saved working directory and index state WIP on master: 944a866 second file added
+HEAD is now at 944a866 second file added
+
+B:\my>git checkout header
+Switched to branch 'header'
+
+B:\my>git status
+On branch header
+nothing to commit, working directory clean
+
+B:\my>git status
+On branch header
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        branch file2.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+B:\my>git add .
+
+B:\my>git commit -m "branch file 2 added"
+[header f81a9f1] branch file 2 added
+ 1 file changed, 1 insertion(+)
+ create mode 100644 branch file2.txt
+
+B:\my>git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+B:\my>git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+nothing to commit, working directory clean
+
+B:\my>git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        stash1.txt
+        stash2.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+B:\my>git stash
+No local changes to save
+
+B:\my>git add .
+
+B:\my>git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   stash1.txt
+        new file:   stash2.txt
+
+
+B:\my>git stash
+Saved working directory and index state WIP on master: 944a866 second file added
+HEAD is now at 944a866 second file added
+
+B:\my>git stash list
+stash@{0}: WIP on master: 944a866 second file added
+stash@{1}: WIP on master: 944a866 second file added
+
+B:\my>git stash pop
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   stash1.txt
+        new file:   stash2.txt
+
+Dropped refs/stash@{0} (41673221c9a52b181faaa5b2b74734229f9f8d3a)
+
+B:\my>git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   stash1.txt
+        new file:   stash2.txt
+
+
+B:\my>git reset HEAD
+
+B:\my>git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        stash1.txt
+        stash2.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+B:\my>git add .
+
+B:\my>git stash
+Saved working directory and index state WIP on master: 944a866 second file added
+HEAD is now at 944a866 second file added
+
+B:\my>git checkout header
+Switched to branch 'header'
+
+B:\my>git status
+On branch header
+nothing to commit, working directory clean
+
+B:\my>git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+B:\my>git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+nothing to commit, working directory clean
+
+B:\my>git stash list
+stash@{0}: WIP on master: 944a866 second file added
+stash@{1}: WIP on master: 944a866 second file added
+
+B:\my>git stash pop
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   stash1.txt
+        new file:   stash2.txt
+
+Dropped refs/stash@{0} (9726f03ebd0c98a9274d8df83baaf271d5be88be)
+
+B:\my>git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   stash1.txt
+        new file:   stash2.txt
+
+
+B:\my>git commit -m "dstash files added"
+[master 9ec27a1] dstash files added
+ 2 files changed, 96 insertions(+)
+ create mode 100644 stash1.txt
+ create mode 100644 stash2.txt
+
+B:\my>git stash pop
+On branch master
+Your branch is ahead of 'origin/master' by 5 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   check stash.txt
+        new file:   checking.txt
+
+Dropped refs/stash@{0} (a63eb2bab35288bfbabd0debd2697157d27c34f7)
+
+B:\my>git status
+On branch master
+Your branch is ahead of 'origin/master' by 5 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   check stash.txt
+        new file:   checking.txt
+
+
+B:\my>git commit -m "old stashed files"
+[master dd79659] old stashed files
+ 2 files changed, 96 insertions(+)
+ create mode 100644 check stash.txt
+ create mode 100644 checking.txt
+
+B:\my>git branch
+  footer
+  header
+* master
+
+B:\my>git add .
+
+B:\my>git stash
+Saved working directory and index state WIP on master: dd79659 old stashed files
+HEAD is now at dd79659 old stashed files
+
+B:\my>git checkout header
+Switched to branch 'header'
+
+B:\my>git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 6 commits.
+  (use "git push" to publish your local commits)
+
+B:\my>git status
+On branch master
+Your branch is ahead of 'origin/master' by 6 commits.
+  (use "git push" to publish your local commits)
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        sts second stash.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+B:\my>git add .
+
+B:\my>git stash
+Saved working directory and index state WIP on master: dd79659 old stashed files
+HEAD is now at dd79659 old stashed files
+
+B:\my>git checkout header
+Switched to branch 'header'
+
+B:\my>git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 6 commits.
+  (use "git push" to publish your local commits)
+
+B:\my>git status
+On branch master
+Your branch is ahead of 'origin/master' by 6 commits.
+  (use "git push" to publish your local commits)
+nothing to commit, working directory clean
+
+B:\my>git stash list
+stash@{0}: WIP on master: dd79659 old stashed files
+stash@{1}: WIP on master: dd79659 old stashed files
+
+B:\my>git stash apply
+On branch master
+Your branch is ahead of 'origin/master' by 6 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   sts second stash.txt
+
+
+B:\my>git status
+On branch master
+Your branch is ahead of 'origin/master' by 6 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   sts second stash.txt
+
+
+B:\my>git commit -m "second stash recovered"
+[master 949fdf4] second stash recovered
+ 1 file changed, 48 insertions(+)
+ create mode 100644 sts second stash.txt
+
+B:\my>git stash list
+stash@{0}: WIP on master: dd79659 old stashed files
+stash@{1}: WIP on master: dd79659 old stashed files
+
+B:\my>git stash apply
+On branch master
+Your branch is ahead of 'origin/master' by 7 commits.
+  (use "git push" to publish your local commits)
+nothing to commit, working directory clean
+
+B:\my>git stash list
+stash@{0}: WIP on master: dd79659 old stashed files
+stash@{1}: WIP on master: dd79659 old stashed files
+
+
+B:\my>git add .
+
+B:\my>git status
+On branch master
+Your branch is ahead of 'origin/master' by 7 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   content1.txt
+        new file:   untracked.txt
+
+
+B:\my>git stash -u
+Saved working directory and index state WIP on master: 949fdf4 second stash recovered
+HEAD is now at 949fdf4 second stash recovered
+
+B:\my>git stash list
+stash@{0}: WIP on master: 949fdf4 second stash recovered
+stash@{1}: WIP on master: dd79659 old stashed files
+stash@{2}: WIP on master: dd79659 old stashed files
+
+B:\my>git stash pop
+On branch master
+Your branch is ahead of 'origin/master' by 7 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   content1.txt
+        new file:   untracked.txt
+
+Dropped refs/stash@{0} (f6c372fd6456524e03f137f7d6c500f3770e334b)
+
+B:\my>git reset HEAD
+
+B:\my>git status
+On branch master
+Your branch is ahead of 'origin/master' by 7 commits.
+  (use "git push" to publish your local commits)
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        content1.txt
+        untracked.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+B:\my>git add content1.txt
+
+B:\my>git status
+On branch master
+Your branch is ahead of 'origin/master' by 7 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   content1.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        untracked.txt
+
+
+B:\my>git stash
+Saved working directory and index state WIP on master: 949fdf4 second stash recovered
+HEAD is now at 949fdf4 second stash recovered
+
+B:\my>git stash list
+stash@{0}: WIP on master: 949fdf4 second stash recovered
+stash@{1}: WIP on master: dd79659 old stashed files
+stash@{2}: WIP on master: dd79659 old stashed files
+
+B:\my>git stash pop
+On branch master
+Your branch is ahead of 'origin/master' by 7 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   content1.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        untracked.txt
+
+Dropped refs/stash@{0} (f31c14046823aed609821c387e5e2766202a0552)
+
+B:\my>git stash pop stash@{1}
+On branch master
+Your branch is ahead of 'origin/master' by 7 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   content1.txt
+        new file:   sts apply.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        untracked.txt
+
+Dropped stash@{1} (53221a89dfc3c79cde5c223d04828573415898a2)
+
+B:\my>git stash show
+ sts second stash.txt | 48 ++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+
+B:\my>git stash show stash@{1}
+fatal: Log for 'stash' only has 1 entries.
+
+B:\my>git stash drop stash@{1}
+fatal: Log for 'stash' only has 1 entries.
+
+B:\my>git stash  clear
+
+B:\my>git stash list
+
+B:\my>git status
+On branch master
+Your branch is ahead of 'origin/master' by 7 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   content1.txt
+        new file:   sts apply.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        untracked.txt
+
+
+
+git clone -> to  clone existing repository in github in local machine
+
+git add . or git add -all -> to add all the files in working directory to staging area
+
+git reset head -> to remove all the files added to staging area
+
+	command can be considered an 'undo' type command.
+
+	 In some cases, we might realize that the changes that we made were
+	 not correct.(may be modified some files, added and deleted a lot of lines )
+
+	In simple terms, we want to revert the changes that we just made 
+	and go back to prev state.
+	
+	This technique is called “reset to HEAD” 
+
+What is HEAD:
+Git maintains a variable for referencing, called HEAD 
+to the latest commit in the recent checkout branch. 
+
+we can imagine HEAD as the “current committed branch”. 
+we can think of as a pointer, as the purpose of this variable is to
+point to or act as a reference to a particular commit in the repository. 
+Say, we make a new commit in the repo then the pointer or HEAD is going to 
+move or change its position to point to a new commit.
+
+HEAD points to the starting point of the present branch in the repository 
+at all times. It can be thought of as the last state or the last checked out 
+point in a repository
+
+
+Git Hard reset:
+	
+ git reset --hard HEAD       (going back to HEAD)
+ git reset --hard HEAD^       (going back 1 commit before HEAD)
+ git reset --hard HEAD~2       (going back 2 commit before HEAD)
+
+	HEAD or HEAD^ or HEAD~2 ---> to go back ward
+	
+
+The purpose of the “git reset” command is to move the current HEAD to the commit specified 
+
+“–hard” option is used in order to reset the files of the index (or the staging area)
+ and of the working directory.
+
+after that check log:
+
+git log --oneline --graph
+
+
+example:
+
+B:\newrepo>git ls-tree -r master --name-only
+a.txt
+c.txt
+d.txt
+
+B:\newrepo>git reset --hard HEAD~2
+HEAD is now at 2aab32c file added
+
+B:\newrepo>git ls-tree -r master --name-only
+a.txt
+
+B:\newrepo>git reset --hard HEAD@{2}
+HEAD is now at 2aab32c file added
+
+B:\newrepo>git ls-tree -r master --name-only
+a.txt
+
+B:\newrepo>git reset --hard HEAD@{1}
+HEAD is now at 36c0752 commit 3rd file n master
+
+B:\newrepo>git ls-tree -r master --name-only
+a.txt
+c.txt
+d.txt
+
+
+Undoing hard reset to HEAD
+HEAD@{1} - to get back the changes which we resetted - go forward
+HEAD@{2} ....
+
+GIT Soft reset:
+
+B:\newrepo>git reset --soft HEAD~2
+
+B:\newrepo>git ls-tree -r master --name-only
+a.txt
+
+B:\newrepo>git status
+On branch master
+Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   c.txt
+        new file:   d.txt
+
+soft reset - will not remove the files but it adds to staging area
+
+chk the below hard  reset option :
+
+B:\newrepo>git reset --hard HEAD~1
+HEAD is now at 2aab32c file added
+
+B:\newrepo>git ls-tree -r master --name-only
+a.txt
+
+B:\newrepo>git status
+On branch master
+Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+nothing to commit, working directory clean
+
+here the files are not available physically and also in ls command
+=====================================================================================
+NOTE:
+One popular usage of the soft reset command is to combine many different commits into a single one.
+=====================================================================================
+
+Remove Files From Git Commit
+
+git reset --soft HEAD~1
+
+then remove from staging by using git rm command
+
+git rm --cached <file>
+
+When you are done with the modifications, you can simply commit your changes again with the “–amend” option
+
+git commit --amend or git commit --a
+
+then check using
+
+git ls-files
+
+Check also for Git Restore 
+
+Remove Specific File from Git Commit:
+
+git reset HEAD^ -- <file name>
+
+
+
+
+
+
+
+
+
+
+
+
+
