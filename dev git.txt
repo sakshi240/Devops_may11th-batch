@@ -649,7 +649,8 @@ Git Hard reset:
 	HEAD or HEAD^ or HEAD~2 ---> to go back ward
 	
 
-The purpose of the “git reset” command is to move the current HEAD to the commit specified 
+The purpose of the “git reset” command is to move the current 
+HEAD to the commit specified 
 
 “–hard” option is used in order to reset the files of the index (or the staging area)
  and of the working directory.
@@ -753,14 +754,433 @@ Remove Specific File from Git Commit:
 git reset HEAD^ -- <file name>
 
 
+11:01 18-05-2020
+==============---===
 
 
+B:\atos\git_day3>git remote add https://github.com/kathir-freelance/devopsrepo.git
+usage: git remote add [<options>] <name> <url>
+
+    -f, --fetch           fetch the remote branches
+    --tags                import all tags and associated objects when fetching
+                          or do not fetch any tag at all (--no-tags)
+    -t, --track <branch>  branch(es) to track
+    -m, --master <branch>
+                          master branch
+    --mirror[=<push|fetch>]
+                          set up remote as a mirror to push to or fetch from
 
 
+B:\atos\git_day3>git remote add  origin https://github.com/kathir-freelance/devopsrepo.git
+
+B:\atos\git_day3>git status
+On branch master
+nothing to commit, working directory clean
+
+B:\atos\git_day3>git pull
+warning: no common commits
+remote: Enumerating objects: 52, done.
+remote: Counting objects: 100% (52/52), done.
+remote: Compressing objects: 100% (26/26), done.
+remote: Total 52 (delta 2), reused 49 (delta 1), pack-reused 0
+Unpacking objects: 100% (52/52), done.
+From https://github.com/kathir-freelance/devopsrepo
+ * [new branch]      master     -> origin/master
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> master
 
 
+B:\atos\git_day3>git pull -u origin master
+error: unknown switch `u'
+usage: git pull [<options>] [<repository> [<refspec>...]]
+
+    -v, --verbose         be more verbose
+    -q, --quiet           be more quiet
+    --progress            force progress reporting
+
+Options related to merging
+    -r, --rebase[=<false|true|preserve|interactive>]
+                          incorporate changes by rebasing rather than merging
+    -n                    do not show a diffstat at the end of the merge
+    --stat                show a diffstat at the end of the merge
+    --log[=<n>]           add (at most <n>) entries from shortlog to merge commit message
+    --squash              create a single commit instead of doing a merge
+    --commit              perform a commit if the merge succeeds (default)
+    --edit                edit message before committing
+    --ff                  allow fast-forward
+    --ff-only             abort if fast-forward is not possible
+    --verify-signatures   verify that the named commit has a valid GPG signature
+    --autostash           automatically stash/stash pop before and after rebase
+    -s, --strategy <strategy>
+                          merge strategy to use
+    -X, --strategy-option <option=value>
+                          option for selected merge strategy
+    -S, --gpg-sign[=<key-id>]
+                          GPG sign commit
+    --allow-unrelated-histories
+                          allow merging unrelated histories
+
+Options related to fetching
+    --all                 fetch from all remotes
+    -a, --append          append to .git/FETCH_HEAD instead of overwriting
+    --upload-pack <path>  path to upload pack on remote end
+    -f, --force           force overwrite of local branch
+    -t, --tags            fetch all tags and associated objects
+    -p, --prune           prune remote-tracking branches no longer on remote
+    --recurse-submodules[=<on-demand>]
+                          control recursive fetching of submodules
+    -j, --jobs[=<n>]      number of submodules pulled in parallel
+    --dry-run             dry run
+    -k, --keep            keep downloaded pack
+    --depth <depth>       deepen history of shallow clone
+    --unshallow           convert to a complete repository
+    --update-shallow      accept refs that update .git/shallow
+    --refmap <refmap>     specify fetch refmap
 
 
+B:\atos\git_day3>git push
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin master
 
 
+B:\atos\git_day3>git push --set -u origin master
+Fatal: HttpRequestException encountered.
+Username for 'https://github.com': natararajan1959@gmail.com
+Password for 'https://natararajan1959@gmail.com@github.com':
+To https://github.com/kathir-freelance/devopsrepo.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/kathir-freelance/devopsrepo.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+B:\atos\git_day3>git pull
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> master
+
+
+B:\atos\git_day3>git pull origin master
+From https://github.com/kathir-freelance/devopsrepo
+ * branch            master     -> FETCH_HEAD
+fatal: refusing to merge unrelated histories
+
+B:\atos\git_day3>git pull origin master --allow-unrelated-histories
+From https://github.com/kathir-freelance/devopsrepo
+ * branch            master     -> FETCH_HEAD
+Merge made by the 'recursive' strategy.
+ a.txt                                              |   1 +
+ b.txt                                              |   1 +
+ c.txt                                              |   1 +
+ d.txt                                              |   1 +
+ dir1/e.txt                                         |   1 +
+ dir1/f-dir.txt                                     |   1 +
+ dir1/g-dir.txt                                     |   1 +
+ gmail/.classpath                                   |  26 ++++++++++++++
+ gmail/.project                                     |  23 +++++++++++++
+ gmail/.settings/org.eclipse.core.resources.prefs   |   4 +++
+ gmail/.settings/org.eclipse.jdt.core.prefs         |   5 +++
+ gmail/.settings/org.eclipse.m2e.core.prefs         |   4 +++
+ gmail/pom.xml                                      |  16 +++++++++
+ gmail/src/main/java/com/google/gmail/App.java      |  17 +++++++++
+ gmail/src/test/java/com/google/gmail/AppTest.java  |  38 +++++++++++++++++++++
+ gmail/target/classes/META-INF/MANIFEST.MF          |   5 +++
+ .../META-INF/maven/com.google/gmail/pom.properties |   7 ++++
+ .../META-INF/maven/com.google/gmail/pom.xml        |  16 +++++++++
+ gmail/target/classes/com/google/gmail/App.class    | Bin 0 -> 904 bytes
+ .../test-classes/com/google/gmail/AppTest.class    | Bin 0 -> 619 bytes
+ my file                                            |   1 +
+ 21 files changed, 169 insertions(+)
+ create mode 100644 a.txt
+ create mode 100644 b.txt
+ create mode 100644 c.txt
+ create mode 100644 d.txt
+ create mode 100644 dir1/e.txt
+ create mode 100644 dir1/f-dir.txt
+ create mode 100644 dir1/g-dir.txt
+ create mode 100644 gmail/.classpath
+ create mode 100644 gmail/.project
+ create mode 100644 gmail/.settings/org.eclipse.core.resources.prefs
+ create mode 100644 gmail/.settings/org.eclipse.jdt.core.prefs
+ create mode 100644 gmail/.settings/org.eclipse.m2e.core.prefs
+ create mode 100644 gmail/pom.xml
+ create mode 100644 gmail/src/main/java/com/google/gmail/App.java
+ create mode 100644 gmail/src/test/java/com/google/gmail/AppTest.java
+ create mode 100644 gmail/target/classes/META-INF/MANIFEST.MF
+ create mode 100644 gmail/target/classes/META-INF/maven/com.google/gmail/pom.properties
+ create mode 100644 gmail/target/classes/META-INF/maven/com.google/gmail/pom.xml
+ create mode 100644 gmail/target/classes/com/google/gmail/App.class
+ create mode 100644 gmail/target/test-classes/com/google/gmail/AppTest.class
+ create mode 100644 my file
+
+B:\atos\git_day3>git push
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin master
+
+
+B:\atos\git_day3> git push --set-upstream origin master
+Fatal: HttpRequestException encountered.
+Username for 'https://github.com': natararajan1959@gmail.com
+Password for 'https://natararajan1959@gmail.com@github.com':
+Counting objects: 7, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (7/7), 1.17 KiB | 0 bytes/s, done.
+Total 7 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/kathir-freelance/devopsrepo.git
+   f97a28a..a146380  master -> master
+Branch master set up to track remote branch master from origin.
+
+B:\atos\git_day3>git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   thrid.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+B:\atos\git_day3>git add .
+
+B:\atos\git_day3>git commit -m "third html modified"
+[master 53a4aa9] third html modified
+ 1 file changed, 1 insertion(+)
+
+B:\atos\git_day3>git reflog
+53a4aa9 HEAD@{0}: commit: third html modified
+a146380 HEAD@{1}: pull origin master --allow-unrelated-histories: Merge made by the 'recursive' strategy.
+ca5c34d HEAD@{2}: commit: 2 & 3rd file added
+18c15dd HEAD@{3}: commit (initial): first html added
+
+B:\atos\git_day3>git diff 53a4aa9 ca5c34d
+diff --git a/a.txt b/a.txt
+deleted file mode 100644
+index 21e64d5..0000000
+--- a/a.txt
++++ /dev/null
+@@ -1 +0,0 @@
+-this is a file
+\ No newline at end of file
+diff --git a/b.txt b/b.txt
+deleted file mode 100644
+index 8d776cf..0000000
+--- a/b.txt
++++ /dev/null
+@@ -1 +0,0 @@
+-file b
+\ No newline at end of file
+diff --git a/c.txt b/c.txt
+deleted file mode 100644
+index ced9817..0000000
+--- a/c.txt
++++ /dev/null
+@@ -1 +0,0 @@
+-file c
+\ No newline at end of file
+diff --git a/d.txt b/d.txt
+deleted file mode 100644
+index e20384e..0000000
+--- a/d.txt
++++ /dev/null
+:...skipping...
+diff --git a/a.txt b/a.txt
+deleted file mode 100644
+index 21e64d5..0000000
+--- a/a.txt
++++ /dev/null
+@@ -1 +0,0 @@
+-this is a file
+\ No newline at end of file
+diff --git a/b.txt b/b.txt
+deleted file mode 100644
+index 8d776cf..0000000
+--- a/b.txt
++++ /dev/null
+@@ -1 +0,0 @@
+-file b
+\ No newline at end of file
+diff --git a/c.txt b/c.txt
+deleted file mode 100644
+index ced9817..0000000
+--- a/c.txt
++++ /dev/null
+@@ -1 +0,0 @@
+-file c
+\ No newline at end of file
+diff --git a/d.txt b/d.txt
+deleted file mode 100644
+index e20384e..0000000
+--- a/d.txt
++++ /dev/null
+@@ -1 +0,0 @@
+-file d
+\ No newline at end of file
+
+B:\atos\git_day3>git diff 53a4aa9
+
+B:\atos\git_day3>cd..
+
+B:\atos>mkdir git_diff
+
+B:\atos>cd git_diff
+
+B:\atos\git_diff>git init
+Initialized empty Git repository in B:/atos/git_diff/.git/
+
+B:\atos\git_diff>git add .
+
+B:\atos\git_diff>git commit -m "first file added"
+[master (root-commit) b530a3b] first file added
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file1.txt
+
+B:\atos\git_diff>git add .
+
+B:\atos\git_diff>git commit -m "second file added"
+[master a047f16] second file added
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file 2.txt
+
+B:\atos\git_diff>git log
+commit a047f16a1e151a43881cc753373e31900723a07e
+Author: kathir-freelance <natararajan1959@gmail.com>
+Date:   Mon May 18 10:51:24 2020 +0530
+
+    second file added
+
+commit b530a3b7320533594571aaa72c84253cccc7dd76
+Author: kathir-freelance <natararajan1959@gmail.com>
+Date:   Mon May 18 10:50:46 2020 +0530
+
+    first file added
+
+B:\atos\git_diff>git diff a047f16a1e151a43881cc753373e31900723a07e b530a3b7320533594571aaa72c84253cccc7dd76
+diff --git a/file 2.txt b/file 2.txt
+deleted file mode 100644
+index 5e14ca8..0000000
+--- a/file 2.txt
++++ /dev/null
+@@ -1 +0,0 @@
+-file 2 hi hello
+\ No newline at end of file
+
+B:\atos\git_diff>git add .
+
+B:\atos\git_diff>git commit -m "file 2 modified"
+[master 10c0ad1] file 2 modified
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+B:\atos\git_diff>git log
+commit 10c0ad1a1b3572abb8567eed66a503f4cba774d3
+Author: kathir-freelance <natararajan1959@gmail.com>
+Date:   Mon May 18 10:54:24 2020 +0530
+
+    file 2 modified
+
+commit a047f16a1e151a43881cc753373e31900723a07e
+Author: kathir-freelance <natararajan1959@gmail.com>
+Date:   Mon May 18 10:51:24 2020 +0530
+
+    second file added
+
+commit b530a3b7320533594571aaa72c84253cccc7dd76
+Author: kathir-freelance <natararajan1959@gmail.com>
+Date:   Mon May 18 10:50:46 2020 +0530
+
+    first file added
+
+B:\atos\git_diff>git  diff 10c0ad1a1b3572abb8567eed66a503f4cba774d3  a047f16a1e151a43881cc753373e31900723a07e
+diff --git a/file 2.txt b/file 2.txt
+index 3e59eb7..5e14ca8 100644
+--- a/file 2.txt
++++ b/file 2.txt
+@@ -1 +1 @@
+-i am adding content ...file 2 hi hello
+\ No newline at end of file
++file 2 hi hello
+\ No newline at end of file
+
+B:\atos\git_diff>git  diff 10c0ad1a1b3572abb8567eed66a503f4cba774d3  a047f16a1e151a43881cc753373e31900723a07e
+diff --git a/file 2.txt b/file 2.txt
+index 3e59eb7..5e14ca8 100644
+--- a/file 2.txt
++++ b/file 2.txt
+@@ -1 +1 @@
+-i am adding content ...file 2 hi hello
+\ No newline at end of file
++file 2 hi hello
+\ No newline at end of file
+
+B:\atos\git_diff>git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   file 2.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+B:\atos\git_diff>git add .
+
+B:\atos\git_diff>git commit -m "dot removed"
+[master 0d1fcd4] dot removed
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+B:\atos\git_diff>git reflog
+0d1fcd4 HEAD@{0}: commit: dot removed
+10c0ad1 HEAD@{1}: commit: file 2 modified
+a047f16 HEAD@{2}: commit: second file added
+b530a3b HEAD@{3}: commit (initial): first file added
+
+B:\atos\git_diff>git diff 0d1fcd4 10c0ad1
+diff --git a/file 2.txt b/file 2.txt
+index 5561037..3e59eb7 100644
+--- a/file 2.txt
++++ b/file 2.txt
+@@ -1 +1 @@
+-i am adding content file 2 hi hello
+\ No newline at end of file
++i am adding content ...file 2 hi hello
+\ No newline at end of file
+
+B:\atos\git_diff>git diff -color-words
+error: invalid option: -color-words
+
+B:\atos\git_diff>git diff-color-words
+git: 'diff-color-words' is not a git command. See 'git --help'.
+
+B:\atos\git_diff>git diff --color-words
+
+B:\atos\git_diff>git diff 0d1fcd4 10c0ad1
+diff --git a/file 2.txt b/file 2.txt
+index 5561037..3e59eb7 100644
+--- a/file 2.txt
++++ b/file 2.txt
+@@ -1 +1 @@
+-i am adding content file 2 hi hello
+\ No newline at end of file
++i am adding content ...file 2 hi hello
+\ No newline at end of file
 
