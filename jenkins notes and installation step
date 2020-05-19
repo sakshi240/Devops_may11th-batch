@@ -1,0 +1,207 @@
+Jenkins:
+
+Continuous Integration, also know as CI, is a cornerstone of modern 
+software development
+
+
+Continuous Integration, in its simplest form, involves a tool that 
+monitors your version control system
+for changes. Whenever a change is detected, this tool automatically compiles 
+and tests your application.
+If something goes wrong, the tool immediately notifies the developers 
+so that they can fix the issue
+immediately.
+
+But Continuous Integration can do much more than this. 
+Continuous Integration can also help you keep
+tabs on the health of your code base, automatically monitoring code quality and code coverage metrics,
+and helping keep technical debt down and maintenance costs low
+
+ Combined with automated end-to-end acceptance tests, 
+CI can also act as a communication tool,
+publishing a clear picture of the current state of development efforts.
+ And it can simplify and accelerate
+delivery by helping you automate the deployment process, letting you deploy the latest version of your
+application either automatically or as a one-click process.
+
+Continuous Integration is about reducing risk by providing faster feedback. 
+
+Continuous Integration can open and facilitate
+communication channels between team members and encourage collaborative problem solving and
+process improvement. 
+
+And, by automating the deployment process, Continuous Integration helps you
+get your software into the hands of the testers and the end users faster, more reliably, and with less effort.
+
+The practice of automatically deploying every successful build directly into production is
+generally known as Continuous Deployment.
+However, a pure Continuous Deployment approach is not always appropriate for everyone. For example,
+many users would not appreciate new versions falling into their laps several times a week, and prefer a
+more predictable (and transparent) release cycle. Commercial and
+
+The notion of Continuous Delivery is a slight variation on the idea of Continuous Deployment that takes
+into account these considerations. With Continuous Delivery, any and every successful build that has
+passed all the relevant automated tests and quality gates can potentially be deployed into production
+via a fully automated one-click process, and be in the hands of the end-user within minutes. However,
+the process is not automatic: it is the business, rather than IT, that decides the best time to deliver the
+latest changes.
+
+Introduction to jenkins:
+
+* Jenkins, originally called Hudson
+* created by  Kohsuke Kawaguchi, in late 2004
+* open source Continuous Integration tool written in Java.
+* Jenkins is used by teams of all sizes
+* For projects in a wide variety of languages and technologies, 
+  including .NET, Ruby, Groovy, Grails, PHP and more, as well as Java.
+
+
+Installation :
+
+install java:
+ in cmd prompt type 
+
+java & javac
+
+install git :
+
+in cmd 
+	git
+	
+ Setting Up a GitHub Account
+install maven:
+	mvn -v in cmd
+
+download jenkins war file
+
+then open cmd prompt:
+
+goto folder where jenkins.war is kept, say d:\jenkins
+
+d:\jenkins> java -jar jenkins.war
+
+the above line runs the jenkins web appln in jetty embedded server
+(embedded servis in the jenkins jar)
+if port error comes , use 
+
+java -jar jenkins.war --httpPort=9090
+java -jar jenkins.war --httpsPort=9090
+
+or deploy in apache tomcat server
+
+once started, you ll have give password 
+
+pwd will be found in the server started screen itself ie whn u run java-jar jnk.war
+
+or else look out for a file with name initialAdminPassword.file in C:\Users\DELL\.jenkins\secrets
+
+or 
+follow as per below link
+https://www.lazysystemadmin.com/2018/12/quick-howto-reset-jenkins-admin-password.html
+
+then goto browser  and type http://localhost:9090/
+
+
+username: admin 
+password : as mentioned above in intialAdminPassword.file
+
+You will be able to see the dash board
+
+Then we have to configure maven, git and java in jenkins tool:
+
+Configuring the Tools
+
+* Click on the Manage Jenkins link on the home page 
+* configure java ,maven and git
+
+one important thing before configuring git is plugins has to be downloaded
+
+goto http://localhost:9090/pluginManager/
+
+search for below listed plugins and install
+
+NOTE : u have to select ->install without restart
+
+Branch API
+Git client plugin 3.2.1		
+Git plugin 4.2.2		
+GIT server Plugin
+GitHub
+GitHub API
+GitHub Branch Source
+Maven Integration - this is for maven projects to be created on jenkins
+Pipeline
+Pipeline API
+
+Our First Jenkins Build Job:
+
+click on home or jrnkins logo , come to home page
+
+select  -> new Item -> freeStyle project -> give name and click ok
+
+then in Source Code Management-> select as git
+
+then give the url of git repo as shown below
+
+url repository-> https://github.com/kathir-freelance/sample.git
+
+Jenkins to monitor the repository and start a build whenever any
+changes have been committed
+
+We configure all of this in the Build Triggers section  and Pick the Poll SCM option and enter “* * * * *” in schedule box
+
+The star is a wildcard character which accepts any valid value for that field. So five stars basically means
+“every minute of every hour of every day.” You can also provide ranges of values: “* 9-17 * * *” would
+mean “every minute of every day, between 9am and 5pm.” You can also space out the schedule using
+intervals: “*/5 * * * *” means “every 5 minutes,” for example. Finally, there are some other convenient
+short-hands, such as “@daily” and “@hourly”.
+
+The next step is to configure the actual build itself. can be ant or gradle or MSBuild
+
+“Add build step” and choose “Invoke top-level Maven targets” 
+
+in goals text box give clean package or instal etc
+
+pls keep the compiler plugin in the pom file of ur projects
+
+
+Go to the Post-build Actions section and  tick “Publish JUnit test result report” checkbox.
+
+When Maven runs unit tests in a project,
+it automatically generates the XML test reports in a directory called surefire-reports in the target
+directory. 
+
+So enter “**/target/surefire-reports/*.xml” in the “Test report XMLs” field. The two asterisks
+at the start of the path (“**”) are a best practice to make the configuration a bit more robust: they allow
+Jenkins to find the target directory no matter how we have configured Jenkins to check out the source
+code.
+
+optional->
+click add-post-build button and select “Archive the artifacts” checkbox
+and then give **/target/*.jar in files to archive
+
+so done with process.
+
+so now push code into github and check whether build is happening or not
+
+or to manual do  it , click on dashboard, select ur project and click build now 
+on left side , u ll get build no in build history. check for latest build number and click
+and select console output for info about current build
+
+optionally - documnetation:https://stackoverflow.com/questions/25442947/javadoc-will-not-publish-on-jenkins
+
+Adding Code Coverage and Other Metrics:
+========================================
+Reporting is one of Jenkins’s strong points
+
+Code coverage is an indication of how much of your application code is actually 
+executed during your tests—it can be a useful tool in particular for finding areas 
+of code that have not been tested by your test suites.TDD or BDD.
+
+Cobertura plugin: Open source code coverage tool that works well with both 
+		  Maven and Jenkins
+
+Go to the Manage Jenkins page and click on the Manage Plugins entry
+
+
+
