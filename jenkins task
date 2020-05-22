@@ -1,0 +1,20 @@
+
+
+github - proj
+
+3 proj - build,tetsproj,deploy
+
+1.build, 2.test, 3.deploy
+
+when build starts - mail has to reach me
+when build fail
+build successfull
+
+display this flow using delivery pipeline
+and also show throuh build monitor view
+
+every proj(build,test,deploy) has to get report and send the report to me in mail
+
+configure jacoco
+once report is generated it has to trigger mail to me
+try sending jacoco report in mail
