@@ -4,7 +4,7 @@ svn - centralized vcs
 
 vcs?
 
-its like a database maintains multiple versions of ur proj
+its like a database maintains multiple versions of ur project.
 
 dvcs:
 
